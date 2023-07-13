@@ -1,96 +1,122 @@
+import Commodities from "./Commodities";
+import Schedule from "./Schedule";
+import SortIcon from '@mui/icons-material/Sort';
+import TuneIcon from '@mui/icons-material/Tune';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
 import { useState } from "react";
-import FlightPlan from "./FlightPlan";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
-interface Flight {
-    date: Date,
-    logo: string,
-    airline: string,
-    departureTime: string,
-    departureAirport: string,
-    arrivalTime: string,
-    arrivalAirport: string,
-    duration: number,
-    direct: boolean,
-    transits: string[],
-    price: number
-}
-const outbandFlight: Flight = {
-    date: new Date("2023-07-12"),
-    logo: "../../assets/images/air-france.png",
-    airline: "Air France",
-    departureTime: "10:00",
-    departureAirport: 'JFK',
-    arrivalTime: "17:10",
-    arrivalAirport: 'ORY',
-    duration: 430,
-    direct: false,
-    transits: ["KEF, Iceland"],
-    price: 415,
-}
-
-const returnFlight: Flight = {
-    date: new Date("2023-07-12"),
-    logo: "../../assets/images/air-france.png",
-    airline: "Air France",
-    departureTime: "10:00",
-    departureAirport: 'JFK',
-    arrivalTime: "17:10",
-    arrivalAirport: 'ORY',
-    duration: 430,
-    direct: false,
-    transits: ["KEF, Iceland"],
-    price: 475,
-
-}
 const Results = () => {
-
-    const [tickets, setTickets] = useState(1);
-
+    const [stops, setStops] = useState(true);
+    const [price, setPrice] = useState(false);
+    const [duration, setDuration] = useState(false);
+    const [airlines, setAirlines] = useState(false);
+    const [airport, setAirport] = useState(false);
     return (
-        <div className=" pt-20 h-screen">
-            <div className=" bg-blue-950 h-28 flex flex-col justify-center items-center">
-                <h2 className="text-white text-5xl">Paris</h2>
-                <div className="flex gap-5 text-white justify-center">
-
-                </div>
-            </div>
+        <div className=" pt-20 min-h-screen bg-gray-50">
 
             <div className='grid grid-cols-10 h-full'>
 
-                <div className=' col-span-6 bg-white border-r border-gray-400'>
-                    <div className=" min-w-max m-6 px-4 py-2 rounded-2xl grid grid-cols-3 justify-between " style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
-                        <div className="col-span-2 pr-2">
-                            <FlightPlan flight={outbandFlight} isOutband={true} />
-                            <FlightPlan flight={returnFlight} isOutband={false} />
-                        </div>
-
-                        <div className="flex flex-col justify-center items-center col-span-1 border-l-2">
-                            <span>
-                                <RemoveCircleIcon className="text-blue-950 hover:opacity-80" style={{height: "1.5rem"}}  onClick={()=>(tickets>1)?setTickets(tickets-1):null}/>
-                                <span className="text-gray-600 text-sm mx-2">{(tickets === 1) ? `${tickets} ticket` : `${tickets} tickets`}</span>
-                                <AddCircleIcon className="text-blue-950 hover:opacity-80" style={{height: "1.5rem"}} onClick={()=>(tickets<9)?setTickets(tickets+1):null}/>
-                            </span>
-
-
-                            <div className="text-gray-900 text-2xl  ">{outbandFlight.price + returnFlight.price} $</div>
-                            <div className="text-gray-600 text-sm">{tickets * (outbandFlight.price + returnFlight.price)} $ total</div>
-
-                            <button className="bg-blue-950 text-white mt-6 px-5 py-2 rounded-xl text-center text-lg flex items-center hover:opacity-80">
-                                Select <ArrowForwardIcon style={{ height: "2rem" }} />
-                            </button>
-                        </div>
+                <div className="col-span-2  border-r border-gray-400 pb-6">
+                    <div className="bg-blue-700 text-white py-4 px-4 mb-4 text-2xl flex  justify-between items-center " >
+                        <h4>
+                            Filters <SortIcon />
+                        </h4>
+                        <TuneIcon className="rounded-full p-1 cursor-pointer hover:bg-blue-400 transition duration-600 ease-in" style={{ fontSize: "2rem" }} />
                     </div>
 
+                    <div className="px-4">
+                        <div className="text-lg py-3 px-2 border-b-2 border-gray-400 text-gray-700 ">
+                            <span className="flex justify-between">
+                                Stops{stops ? <KeyboardArrowUpIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
+                                    onClick={() => setStops(!stops)} />
+                                    : <KeyboardArrowDownIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
+                                        onClick={() => setStops(!stops)} />}
+                            </span>
+                            {stops ? (<form className="flex flex-col gap-4 my-4 px-2">
 
+                                <span className="flex items-center ">
+                                    <input className="w-6 h-6 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" type="checkbox" id="direct" />
+                                    <label className="ml-2 text-sm" htmlFor="direct"> Direct</label>
+                                </span>
+
+                                <span className="flex items-center">
+                                    <input className="w-6 h-6 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" type="checkbox" id="1stop" />
+                                    <label className="ml-2 text-sm" htmlFor="1stop"> 1 Stop</label>
+                                </span>
+
+                                <span className="flex items-center">
+                                    <input className="w-6 h-6 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" type="checkbox" id="2+stops" />
+                                    <label className="ml-2 text-sm" htmlFor="2+stops"> 2+ Stops</label>
+                                </span>
+
+                            </form>) : null}
+                        </div>
+
+                        <div className="text-lg py-3 px-2 border-b-2 border-gray-400 text-gray-700 ">
+                            <span className="flex justify-between">
+                                Price{price ? <KeyboardArrowUpIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
+                                    onClick={() => setPrice(!price)} />
+                                    : <KeyboardArrowDownIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
+                                        onClick={() => setPrice(!price)} />}
+                            </span>
+                            {price ? (<form className="flex items-center my-4">
+                                <label htmlFor="minPrice" className="text-sm mr-1">min</label>
+                                <input type="number" id="minPrice" className="w-16 p-1 mr-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block"/>
+                                <label htmlFor="minPrice" className="text-sm mr-1">max</label>
+                                <input type="number" id="minPrice" className="w-16 p-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block"/>
+                            </form>) : null}
+                        </div>
+
+                        <div className="text-lg py-3 px-2 border-b-2 border-gray-400 text-gray-700 ">
+                            <span className="flex justify-between">
+                                Duration{duration ? <KeyboardArrowUpIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
+                                    onClick={() => setDuration(!duration)} />
+                                    : <KeyboardArrowDownIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
+                                        onClick={() => setDuration(!duration)} />}
+                            </span>
+                            {duration ? (<form className="flex flex-col gap-4 my-4 px-4">
+
+
+
+                            </form>) : null}
+                        </div>
+
+                        <div className="text-lg py-3 px-2 border-b-2 border-gray-400 text-gray-700 ">
+                            <span className="flex justify-between">
+                                Price{price ? <KeyboardArrowUpIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
+                                    onClick={() => setPrice(!price)} />
+                                    : <KeyboardArrowDownIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
+                                        onClick={() => setPrice(!price)} />}
+                            </span>
+                            {price ? (<form className="flex flex-col gap-4 my-4 px-4">
+
+                            </form>) : null}
+                        </div>
+
+                        <div className="text-lg py-3 px-2 border-b-2 border-gray-400 text-gray-700 ">
+                            <span className="flex justify-between">
+                                Price{price ? <KeyboardArrowUpIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
+                                    onClick={() => setPrice(!price)} />
+                                    : <KeyboardArrowDownIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
+                                        onClick={() => setPrice(!price)} />}
+                            </span>
+                            {price ? (<form className="flex flex-col gap-4 my-4 px-4">
+
+
+
+                            </form>) : null}
+                        </div>
+                    </div>
                 </div>
 
+                <div className='col-span-5 border-r border-gray-400 p-8'>
+                    <Schedule /><Schedule /><Schedule />
+                </div>
 
-
-                <div className=' col-span-4 bg-green-400'>
-                    hehe
+                <div className=' col-span-3 p-8 '>
+                    <Commodities />
                 </div>
             </div>
 

@@ -50,19 +50,19 @@ const Home = () => {
     useEffect(() => {
         // Rotate background image every 5 seconds
         const interval = setInterval(rotateBackgroundImage, 5000);
-        // Cleanup interval on component unmount
+        // Cleanup interval on component unmount    
         return () => clearInterval(interval);
     }, []);
     return (
         <div className="bg-white h-screen flex flex-col items-center justify-center bg-cover bg-center"
             style={{ backgroundImage: `url(${covers[currentCoverIndex]})` }}>
-            <p className=" font-bold text-4xl text-white" style={{textShadow : "1px 1px 3px black"}}>
+            <p className=" font-bold text-4xl text-white" style={{ textShadow: "1px 1px 3px black" }}>
                 Your Wings to Limitless Destinations!
             </p>
             <div className="relative ">
-                <form action="" className="mt-6 flex">
-                    <div className="flex rounded-lg overflow-hidden shadow-md">
-                        <span className="flex flex-col bg-gray-100 p-2 border-r-2">
+                <form action="" className="m-6 flex">
+                    <div className="grid grid-cols-9 rounded-lg overflow-hidden shadow-md max-w-screen-lg">
+                        <span className=" col-span-2 flex flex-col bg-gray-100 p-2 border-r-2">
                             <label className="font-semibold text-lg px-4" htmlFor="location">From</label>
                             <input
                                 type="text"
@@ -71,11 +71,11 @@ const Home = () => {
                                 placeholder="City, country"
                                 value={searchLocation}
                                 onChange={(event) => setSearchLocation(event.target.value)}
-                                className=" bg-gray-100   focus:outline-none px-4 text-lg placeholder:text-black"
+                                className=" bg-gray-100 focus:outline-none px-4 text-lg placeholder:text-gray-400"
                             />
                         </span>
 
-                        <span className="flex flex-col bg-gray-100 p-2 border-r-2">
+                        <span className=" col-span-2 flex flex-col bg-gray-100 p-2 border-r-2">
                             <label className="font-semibold text-lg px-4" htmlFor="destination">To</label>
                             <input
                                 type="text"
@@ -84,21 +84,21 @@ const Home = () => {
                                 placeholder="City, country"
                                 value={searchDestination}
                                 onChange={(event) => setSearchDestination(event.target.value)}
-                                className=" bg-gray-100   focus:outline-none px-4 text-lg placeholder:text-black"
+                                className=" bg-gray-100   focus:outline-none px-4 text-lg placeholder:text-gray-400"
                             />
                         </span>
 
-                        <span className="flex flex-col bg-gray-100 p-2 border-r-2">
+                        <span className=" col-span-2 flex flex-col bg-gray-100 p-2 border-r-2">
                             <label className="font-semibold text-lg px-4" htmlFor="depart">Depart</label>
                             <input
                                 type="date"
                                 id="depart"
                                 required={true}
-                                className=" bg-gray-100   focus:outline-none px-4 text-lg"
+                                className=" bg-gray-100   focus:outline-none px-4 text-lg "
                             />
                         </span>
 
-                        <span className="flex flex-col bg-gray-100 p-2 border-r-2">
+                        <span className=" col-span-2 flex flex-col bg-gray-100 p-2 border-r-2">
                             <label className="font-semibold text-lg px-4" htmlFor="return">Return</label>
                             <input
                                 type="date"
@@ -106,9 +106,9 @@ const Home = () => {
                                 className=" bg-gray-100 focus:outline-none px-4 text-lg placeholder:text-gray-400"
                             />
                         </span>
-                        <span className="flex flex-col bg-gray-100 p-2">
-                            <label className="font-semibold text-lg px-4" htmlFor="class">Class</label>
-                            <select id="class" required={true} className="outline-none bg-gray-100 text-lg px-4 block appearance-none border-0 border-b-2 border-gray-500">
+                        <span className=" col-span-1 flex flex-col bg-gray-100 p-2">
+                            <label className="font-semibold text-lg px-4 " htmlFor="class">Class</label>
+                            <select id="class" required={true} className="outline-none bg-gray-100 text-lg block appearance-none border-0 border-b-2 border-gray-500 text-center cursor-pointer">
                                 <option value="">Economy </option>
                                 <option value="">Buisness </option>
                                 <option value="">First </option>
@@ -117,8 +117,8 @@ const Home = () => {
                         </span>
                     </div>
 
-                    <button className="bg-blue-700 h-20 px-4 ml-2 text-white rounded-lg  shadow-md">
-                        <SearchIcon style={{ fontSize: '2.5rem' }} className="hover:scale-110" />
+                    <button className="bg-blue-700 h-20 px-4 ml-4 text-white text-2xl rounded-lg  shadow-md hover:scale-105 transition duration-90 ease-in flex items-center">
+                       Search <SearchIcon style={{ fontSize: '2rem' }}/>
                     </button>
                 </form>
                 {searchLocation && filteredLocations?.length === 0 ? (<p className="absolute my-4 mx-6 text-black text-lg font-bold">No locations that match your search found!</p>)

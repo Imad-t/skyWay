@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='bg-gray-200 p-6 h-full'>
+        <div className='bg-gray-100 shadow p-6 h-full'>
             <div className='flex flex-col justify-center items-center'>
                 <h4 className=''> Subscribe to our Newsletter & get the Latest News!</h4>
 
@@ -39,35 +39,65 @@ const Footer = () => {
                 </div>
 
                 <div>
-                    <h4 className='font-semibold text-lg'>Information</h4>
-                    <ul>
-                        <li className="text-gray-500 text-md">Home</li>
-                        <li className="text-gray-500 text-md">Explore</li>
-                        <li className="text-gray-500 text-md">Flight status</li>
-                        <li className="text-gray-500 text-md">Check-in</li>
-                        <li className="text-gray-500 text-md">Manage your booking</li>
+                    <h4 className="font-semibold text-lg">Information</h4>
+                    <ul className='text-gray-500'>
+                        <li>
+                            <Link to="#" className="hover:underline">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Explore</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Flight Status</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Check-in</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Manage your Booking</Link>
+                        </li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 className='font-semibold text-lg'>Quick Guide</h4>
-                    <ul>
-                        <li className="text-gray-500 text-md">FAQ</li>
-                        <li className="text-gray-500 text-md">How to</li>
-                        <li className="text-gray-500 text-md">Features</li>
-                        <li className="text-gray-500 text-md">Route map</li>
-                        <li className="text-gray-500 text-md">Community</li>
+                    <h4 className="font-semibold text-lg">Quick Guide</h4>
+                    <ul className='text-gray-500'>
+                        <li>
+                            <Link to="#" className="hover:underline">FAQ</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">How To</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Features</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Route Map</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Community</Link>
+                        </li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 className='font-semibold text-lg'>More Details</h4>
-                    <ul>
-                        <li className="text-gray-500 text-md">Our partners</li>
-                        <li className="text-gray-500 text-md">Staff</li>
-                        <li className="text-gray-500 text-md">Careers</li>
-                        <li className="text-gray-500 text-md">Terms of use</li>
-                        <li className="text-gray-500 text-md">Licences</li>
+                    <h4 className="font-semibold text-lg">More Details</h4>
+                    <ul className='text-gray-500'>
+                        <li>
+                            <Link to="#" className="hover:underline">Our Partners</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Staff</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Careers</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Terms of Use</Link>
+                        </li>
+                        <li>
+                            <Link to="#" className="hover:underline">Licences</Link>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -1,5 +1,7 @@
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import LocalAirportIcon from '@mui/icons-material/LocalAirport';
+import { useState } from 'react';
+import logo from "../../assets/images/air-france.png"
 
 interface Flight {
     date: Date,
@@ -19,21 +21,60 @@ const toTime = (minutes: number) => {
     const remainingMinutes = minutes % 60;
     const formattedHours = hours.toString().padStart(2, '0');
     const formattedMinutes = remainingMinutes.toString().padStart(2, '0');
-    return `${formattedHours}:${formattedMinutes}`;
+    if (formattedHours !== "00") return `${formattedHours}h ${formattedMinutes}min`;
+    else return `${formattedMinutes}min`
 }
 
 const FlightPlan: React.FC<{ flight: Flight, isOutband: boolean }> = ({ flight, isOutband }) => {
+
+    const [hoveredTransit, setHoveredTransit] = useState<string | null>(null);
+    const renderTransitIcon = (transits: string[]) => {
+
+        const handleTransitHover = (transit: string) => {
+            setHoveredTransit(transit);
+        };
+
+        const handleTransitLeave = () => {
+            setHoveredTransit(null);
+        };
+        if (transits.length > 0) {
+            return (
+                <div className="relative">
+                    {transits.map((transit, index) => (
+                        <span key={index}>
+                            <RadioButtonCheckedIcon
+                                style={{ backgroundColor: "white", width: "1rem" }}
+                                onMouseEnter={() => handleTransitHover(transit)}
+                                onMouseLeave={handleTransitLeave}
+                            />
+                            <div
+                                className={`absolute bg-gray-100 p-2  rounded border border-gray-700 text-gray-700 transition-opacity duration-300 ${transit === hoveredTransit ? "opacity-100" : "opacity-0"
+                                    }`}
+                                style={{ top: "1.5rem", width: "" }}
+                            >
+                                <span style={{whiteSpace: "nowrap"}}>{transit}</span>
+                            </div>
+                        </span>
+                    ))}
+                </div>
+            );
+        }
+
+        return null;
+    };
+
+
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col mb-2'>
             <div>
                 <span className=' text-xl font-semibold mr-2'>{isOutband ? "Outband" : "Return"}</span>
-                <span className='text-lg text-gray-600'>{flight.date.toLocaleString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
+                <span className=' text-gray-600 text-sm'>{flight.date.toLocaleString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
             </div>
 
-            <div className=' bg-white flex justify-between mt-2 w-4/6 h-24'>
+            <div className=' bg-white flex justify-between  w-4/6 h-24'>
 
                 <div className=' col-span-1'>
-                    <img src={flight.logo} alt="Airline logo" className='h-16 w-16 border border-1' />
+                    < div style={{ backgroundImage: `url(${logo})` }} className='h-16 w-16 border border-1 m-1'></div>
                     <span className='text-xs'>{flight.airline} </span>
                 </div>
 
@@ -44,11 +85,10 @@ const FlightPlan: React.FC<{ flight: Flight, isOutband: boolean }> = ({ flight, 
                     </div>
                     <div className="flex items-center">
                         <div className='flex flex-col w-full gap-2'>
-                            <span className=' text-center text-xs'>{toTime(flight.duration)}</span>
+                            <span className=' text-center text-sm'>{toTime(flight.duration)}</span>
                             <span className="flex items-center">
-                                <div className=' h-0.5 bg-gray-600 w-40 flex justify-around items-center'>
-                                    <RadioButtonCheckedIcon style={{ backgroundColor: "white", width: "1rem" }} />
-                                    <RadioButtonCheckedIcon style={{ backgroundColor: "white", width: "1rem" }} />
+                                <div className=' h-0.5 bg-gray-600 min-w-full w-40 flex justify-around items-center relative '>
+                                    {renderTransitIcon(flight.transits)}
                                 </div>
                             </span>
                             <span className='text-center text-xs text-blue-500'>{flight.direct ? "direct" : "transit"}</span>
