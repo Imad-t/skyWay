@@ -1,6 +1,5 @@
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {

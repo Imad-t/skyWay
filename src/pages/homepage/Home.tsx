@@ -14,8 +14,7 @@ const covers = [cover1, cover2, cover3];
 const Home = () => {
     const [searchDestination, setSearchDestination] = useState<string>();
     const [searchLocation, setSearchLocation] = useState<string>();
-    const [destinations, setDestinations] = useState(cities);
-    const [locations, setLocations] = useState(cities);
+    const [destinations] = useState<City[]>(cities);
     const [currentCoverIndex, setCurrentCoverIndex] = useState(0);
 
 
