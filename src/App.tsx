@@ -6,7 +6,7 @@ import Discounts from "./pages/discounts/Discounts";
 import Results from "./pages/results/Results";
 import Navbar from "./pages/navbar/Navbar";
 import Footer from "./pages/Footer";
-import "./App.css";
+import "./app.css";
 
 
 function App() {
