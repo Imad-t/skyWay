@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='bg-gray-100 shadow p-6 h-full'>
+        <div className='bg-gray-300 shadow p-6 h-full'>
             <div className='flex flex-col justify-center items-center'>
                 <h4 className=''> Subscribe to our Newsletter & get the Latest News!</h4>
 
@@ -102,7 +102,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className='flex justify-center  '>
-                <p className='mx-auto border-2 border-t-gray-400 py-4 px-8'>Developped by
+                <p className='mx-auto py-4 px-8'>Developped by
                     <Link to="https://imad-dev.vercel.app/" className=' text-blue-600 font-semibold  cursor-pointer px-1'>ImadDev</Link>
                     | All rights reserved</p>
             </div>

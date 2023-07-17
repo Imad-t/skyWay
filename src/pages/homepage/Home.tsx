@@ -4,6 +4,7 @@ import cover2 from "../../assets/images/cover2.jpg";
 import cover3 from "../../assets/images/cover3.jpg";
 import cities from "../../data/cities.ts";
 import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
 
 interface City {
     id: number,
@@ -12,6 +13,8 @@ interface City {
 }
 const covers = [cover1, cover2, cover3];
 const Home = () => {
+
+    const navigate = useNavigate();
     const [searchDestination, setSearchDestination] = useState<string>();
     const [searchLocation, setSearchLocation] = useState<string>();
     const [destinations] = useState<City[]>(cities);
@@ -117,8 +120,8 @@ const Home = () => {
                         </span>
                     </div>
 
-                    <button className="bg-blue-700 h-20 px-4 ml-4 text-white text-2xl rounded-lg  shadow-md hover:scale-105 transition duration-90 ease-in flex items-center">
-                       Search <SearchIcon style={{ fontSize: '2rem' }}/>
+                    <button className="bg-blue-700 h-20 px-4 ml-4 text-white text-2xl rounded-lg  shadow-md hover:scale-105 transition duration-90 ease-in flex items-center"  onClick={()=> navigate("/results")}>
+                        Search <SearchIcon style={{ fontSize: '2rem' }} />
                     </button>
                 </form>
                 {searchLocation && filteredLocations?.length === 0 ? (<p className="absolute my-4 mx-6 text-black text-lg font-bold">No locations that match your search found!</p>)
