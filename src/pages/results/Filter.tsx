@@ -2,7 +2,8 @@ import SortIcon from '@mui/icons-material/Sort';
 import TuneIcon from '@mui/icons-material/Tune';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { useState, ChangeEvent } from "react";
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import { useState, ChangeEvent, useEffect } from "react";
 
 const Filter = () => {
 
@@ -12,21 +13,40 @@ const Filter = () => {
     const [maxDuration, setMaxDuration] = useState("8");
     const [airlines, setAirlines] = useState(false);
     const [airport, setAirport] = useState(false);
+    const [showFilters, setShowFilters] = useState(window.innerWidth >= 1024);
+    useEffect(() => {
+        const handleResize = () => {
+            setShowFilters(window.innerWidth >= 1024);
+        };
+    
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
+    // const toggleFilters = () => {
+    //     setShowFilters(!showFilters);
+    // }
+    const toggleFilters = () => {
+            window.innerWidth<=1024? setShowFilters(!showFilters):null;
+        
+    }
+
+
+    
     const onRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
         setMaxDuration(event.target.value);
     }
 
     return (
         <>
-            <div className="bg-blue-700 text-white py-4 px-4 mb-4 text-2xl flex  justify-between items-center " >
-                <h4>
+            <div className="bg-blue-700 text-white py-4 px-4 mb-4 text-2xl flex justify-between items-center ">
+                <h4 onClick={toggleFilters} className='cursor-pointer px-2 py-1 rounded-lg hover:bg-blue-400 lg:hover:bg-blue-700 lg:cursor-default transition duration-600 ease-in'>
                     Filters <TuneIcon />
                 </h4>
                 <SortIcon className="rounded-full p-1 cursor-pointer hover:bg-blue-400 transition duration-600 ease-in" style={{ fontSize: "2rem" }} />
             </div>
 
-            <div className="px-4">
+           { showFilters &&(<div className="px-4">
                 <div className="text-lg py-3 px-2 border-b-2 border-gray-400 text-gray-700 ">
                     <span className="flex justify-between">
                         Stops{stops ? <KeyboardArrowUpIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
@@ -61,7 +81,7 @@ const Filter = () => {
                             : <KeyboardArrowDownIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
                                 onClick={() => setPrice(!price)} />}
                     </span>
-                    {price ? (<form className="flex items-center my-4">
+                    {price ? (<form className="flex lg:flex-col xl:flex-row items-center lg:items-start xl:items-center my-4">
                         <label htmlFor="minPrice" className="text-sm mr-1">min</label>
                         <input type="number" id="minPrice" className=" w-16 p-1 mr-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block" />
                         <label htmlFor="minPrice" className="text-sm mr-1">max</label>
@@ -80,7 +100,7 @@ const Filter = () => {
                         <div className=" text-gray-900 text-sm">
                             Less than {maxDuration} hours
                         </div>
-                        <input type="range" value={maxDuration} min={1} max={24} onChange={onRangeChange} />
+                        <input type="range" value={maxDuration} min={1} max={24} onChange={onRangeChange} className="rounded max-w-sm"/>
 
                     </form>) : null}
                 </div>
@@ -92,7 +112,7 @@ const Filter = () => {
                             : <KeyboardArrowDownIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
                                 onClick={() => setAirlines(!airlines)} />}
                     </span>
-                    {airlines ? (<form className="flex flex-col gap-4 my-4 px-4">
+                    {airlines ? (<form className="flex flex-col gap-4 my-4 px-2">
                         <span className="flex items-center ">
                             <input className="w-6 h-6 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" type="checkbox" id="Air france" />
                             <label className="ml-2 text-sm" htmlFor="Air france"> Air france</label>
@@ -117,7 +137,7 @@ const Filter = () => {
                             : <KeyboardArrowDownIcon className="rounded-full p-1 cursor-pointer hover:bg-gray-300" style={{ fontSize: "2rem" }}
                                 onClick={() => setAirport(!airport)} />}
                     </span>
-                    {airport ? (<form className="flex flex-col gap-4 my-4 px-4">
+                    {airport ? (<form className="flex flex-col gap-4 my-4 px-2">
 
                         <div className="flex flex-col gap-2">
                             <h3>Depart from :</h3>
@@ -142,10 +162,10 @@ const Filter = () => {
                                 <label className="ml-2 text-xs white" htmlFor="EWR">Newark, New-York</label>
                             </span>
                         </div>
-
+                        
                     </form>) : null}
                 </div>
-            </div>
+            </div>)}
         </>
     );
 }

@@ -94,6 +94,36 @@ const Home = () => {
                 onChange={(event) => setSearchLocation(event.target.value)}
                 className=" bg-gray-100 focus:outline-none px-1 lg:px-3 placeholder:text-gray-400"
               />
+              {/* Location Suggestions */}
+        {searchLocation &&
+        showLocationSuggestions &&
+        filteredLocations?.length === 0 ? (
+          <p className="absolute top-60 md:top-24 -left-0  my-4 mx-6 text-black text-lg font-bold bg-white rounded-lg p-2">
+            No locations that match your search found!
+          </p>
+        ) : (
+          searchLocation &&
+          showLocationSuggestions && (
+            <div className="absolute top-24 left-0 border border-solid rounded-lg w-5/12 md:w-3/12 max-h-64 overflow-hidden my-2 mx-6 bg-white">
+              <ul>
+                {filteredLocations.map((location) => (
+                  <li
+                    key={location.id}
+                    className="h-8 flex items-center p-2 hover:bg-gray-100"
+                    onClick={() => {
+                      setSearchLocation(
+                        `${location.city}, ${location.country}`
+                      );
+                      setShowLocationSuggestions(false);
+                    }}
+                  >
+                    {location.city}, {location.country}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        )}
             </span>
 
             <span className=" col-span-3 md:col-span-2 flex flex-col bg-gray-100 p-2 border-b-2 md:border-b-0 md:border-r-2">
@@ -112,6 +142,36 @@ const Home = () => {
                 onChange={(event) => setSearchDestination(event.target.value)}
                 className=" bg-gray-100   focus:outline-none px-1 lg:px-3 placeholder:text-gray-400"
               />
+              {/* Destination Suggestions */}
+        {searchDestination &&
+        showDestinationSuggestions &&
+        filteredDestinations?.length === 0 ? (
+          <p className="absolute top-60 md:top-24 -left-0  my-4 mx-6 text-black text-lg font-bold bg-white rounded-lg p-2">
+            No destinations that match your search found!
+          </p>
+        ) : (
+          searchDestination &&
+          showDestinationSuggestions && (
+            <div className="absolute top-24 -left-8 border border-solid rounded-lg w-5/12 md:w-3/12 max-h-64 overflow-hidden my-2 ml-72 bg-white">
+              <ul>
+                {filteredDestinations.map((destination) => (
+                  <li
+                    key={destination.id}
+                    className="h-8 flex items-center p-2 hover:bg-gray-100"
+                    onClick={() => {
+                      setSearchDestination(
+                        `${destination.city}, ${destination.country}`
+                      );
+                      setShowDestinationSuggestions(false);
+                    }}
+                  >
+                    {destination.city}, {destination.country}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        )}
             </span>
 
             <span className=" col-span-2 flex flex-col bg-gray-100 p-2 border-r-2">
@@ -159,68 +219,6 @@ const Home = () => {
             Search <SearchIcon style={{ fontSize: "2rem" }} />
           </button>
         </form>
-
-        {/* Location Suggestions */}
-        {searchLocation &&
-        showLocationSuggestions &&
-        filteredLocations?.length === 0 ? (
-          <p className="absolute -left-6 my-4 mx-6 text-black text-lg font-bold bg-white rounded-lg p-2">
-            No locations that match your search found!
-          </p>
-        ) : (
-          searchLocation &&
-          showLocationSuggestions && (
-            <div className="absolute -left-6 border border-solid rounded-lg w-3/12 max-h-64 overflow-hidden my-2 mx-6 bg-white">
-              <ul>
-                {filteredLocations.map((location) => (
-                  <li
-                    key={location.id}
-                    className="h-8 flex items-center p-2 hover:bg-gray-100"
-                    onClick={() => {
-                      setSearchLocation(
-                        `${location.city}, ${location.country}`
-                      );
-                      setShowLocationSuggestions(false);
-                    }}
-                  >
-                    {location.city}, {location.country}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        )}
-
-        {/* Destination Suggestions */}
-        {searchDestination &&
-        showDestinationSuggestions &&
-        filteredDestinations?.length === 0 ? (
-          <p className="absolute -left-6 my-4 mx-6 text-black text-lg font-bold bg-white rounded-lg p-2">
-            No destinations that match your search found!
-          </p>
-        ) : (
-          searchDestination &&
-          showDestinationSuggestions && (
-            <div className="absolute -left-6 border border-solid rounded-lg w-3/12 max-h-64 overflow-hidden my-2 ml-72 bg-white">
-              <ul>
-                {filteredDestinations.map((destination) => (
-                  <li
-                    key={destination.id}
-                    className="h-8 flex items-center p-2 hover:bg-gray-100"
-                    onClick={() => {
-                      setSearchDestination(
-                        `${destination.city}, ${destination.country}`
-                      );
-                      setShowDestinationSuggestions(false);
-                    }}
-                  >
-                    {destination.city}, {destination.country}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        )}
       </div>
     </div>
   );

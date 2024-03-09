@@ -17,7 +17,7 @@ const Commodities = () => {
                 style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
                 <h4 className=" font-semibold text-xl text-center">Need a car?</h4>
                 <p className="text-gray-600 text-sm text-center">Don't stop at flights, find deals on wheels too!</p>
-                <span className="flex text-sm">
+                <span className="flex text-sm md:flex-col lg:flex-row items-center">
                     <img src={car} alt="car image" className="h-28" />
                     <div className="text-right">
                         <p>Starting at</p>

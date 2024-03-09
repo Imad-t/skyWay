@@ -68,24 +68,24 @@ const FlightPlan: React.FC<{ flight: Flight, isOutband: boolean }> = ({ flight, 
     return (
         <div className='flex flex-col mb-2'>
             <div>
-                <span className=' text-xl font-semibold mr-2'>{isOutband ? "Outband" : "Return"}</span>
+                <span className=' text-lg sm:text-xl font-semibold mr-2'>{isOutband ? "Outband" : "Return"}</span>
                 <span className=' text-gray-600 text-sm'>{flight.date.toLocaleString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
             </div>
 
-            <div className=' bg-white flex justify-between  w-4/6 h-24'>
+            <div className=' bg-white flex justify-between  w-1/2 sm:w-4/6 h-24'>
 
                 <div className=' col-span-1'>
-                    < div style={{ backgroundImage: `url(${logo})` }} className='h-16 w-16 border border-1 m-1'></div>
+                    < div className={`h-12 w-12 sm:h-16 sm:w-16 border border-1 m-1 bg-[url(${logo})]`}></div>
                     <span className='text-xs'>{flight.airline} </span>
                 </div>
 
-                <div className='flex items-center gap-4 text-gray-600'>
+                <div className='flex items-center sm:gap-3 xl:gap-4 text-gray-600'>
                     <div className=" text-right">
-                        <div className=' text-lg'>{flight.departureTime}</div>
-                        <div className=' text-sm'> {flight.departureAirport} </div>
+                        <div className=' text-sm sm:text-lg'>{flight.departureTime}</div>
+                        <div className='  text-xs sm:text-sm'> {flight.departureAirport} </div>
                     </div>
                     <div className="flex items-center">
-                        <div className='flex flex-col w-full gap-2'>
+                        <div className='flex flex-col gap-2 w-24 lg:w-32 xl:w-full'>
                             <span className=' text-center text-sm'>{toTime(flight.duration)}</span>
                             <span className="flex items-center">
                                 <div className=' h-0.5 bg-gray-600 min-w-full w-40 flex justify-around items-center relative '>
@@ -97,8 +97,8 @@ const FlightPlan: React.FC<{ flight: Flight, isOutband: boolean }> = ({ flight, 
                         <LocalAirportIcon style={{ transform: "rotate(90deg)", width: "1rem", marginLeft: "2px" }} />
                     </div>
                     <div className="text-left">
-                        <div className=' text-lg'>{flight.arrivalTime}</div>
-                        <div className=' text-sm'> {flight.arrivalAirport}</div>
+                        <div className=' text-sm sm:text-lg'>{flight.arrivalTime}</div>
+                        <div className=' text-xs sm:text-sm'> {flight.arrivalAirport}</div>
                     </div>
                 </div>
 

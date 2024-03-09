@@ -11,15 +11,15 @@ const Results = () => {
 
             <div className='grid grid-cols-10 h-full'>
 
-               <div className="col-span-2  border-r border-gray-400 pb-6">
+               <div className=" col-span-10 lg:col-span-2  lg:border-r border-gray-400 pb-6">
                 <Filter/>
                </div>
 
-                <div className='col-span-5 border-r border-gray-400 p-8'>
+                <div className=' col-span-10 md:col-span-7 lg:col-span-5 md:border-r border-gray-400 py-8 px-4 xl:p-8 '>
                     <Schedule /><Schedule /><Schedule />
                 </div>
 
-                <div className=' col-span-3 p-8 '>
+                <div className='col-span-10 md:col-span-3 lg:col-span-3 py-8 px-4 xl:p-8  '>
                     <Commodities />
                 </div>
             </div>
