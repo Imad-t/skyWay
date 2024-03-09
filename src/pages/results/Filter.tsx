@@ -2,7 +2,6 @@ import SortIcon from '@mui/icons-material/Sort';
 import TuneIcon from '@mui/icons-material/Tune';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import { useState, ChangeEvent, useEffect } from "react";
 
 const Filter = () => {
