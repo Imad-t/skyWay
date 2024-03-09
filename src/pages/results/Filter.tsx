@@ -21,9 +21,9 @@ const Filter = () => {
         <>
             <div className="bg-blue-700 text-white py-4 px-4 mb-4 text-2xl flex  justify-between items-center " >
                 <h4>
-                    Filters <SortIcon />
+                    Filters <TuneIcon />
                 </h4>
-                <TuneIcon className="rounded-full p-1 cursor-pointer hover:bg-blue-400 transition duration-600 ease-in" style={{ fontSize: "2rem" }} />
+                <SortIcon className="rounded-full p-1 cursor-pointer hover:bg-blue-400 transition duration-600 ease-in" style={{ fontSize: "2rem" }} />
             </div>
 
             <div className="px-4">

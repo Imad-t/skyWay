@@ -28,7 +28,7 @@ const outbandFlight: Flight = {
     arrivalAirport: 'ORY',
     duration: 430,
     direct: false,
-    transits: ["KEF, Iceland"],
+    transits: ["KEF, Isl"],
     price: 415,
 }
 
@@ -42,7 +42,7 @@ const returnFlight: Flight = {
     arrivalAirport: 'ORY',
     duration: 530,
     direct: false,
-    transits: ["KEF, Iceland"],
+    transits: ["KEF, Isl","CDG, Fr"],
     price: 475,
 
 }

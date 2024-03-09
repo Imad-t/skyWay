@@ -38,12 +38,13 @@ const FlightPlan: React.FC<{ flight: Flight, isOutband: boolean }> = ({ flight, 
             setHoveredTransit(null);
         };
         if (transits.length > 0) {
+            const gap = 12 / transits.length; 
             return (
-                <div className="relative">
+                <div className={`relative flex gap-${gap}`}>
                     {transits.map((transit, index) => (
                         <span key={index}>
                             <RadioButtonCheckedIcon
-                                style={{ backgroundColor: "white", width: "1rem" }}
+                                style={{ backgroundColor: "white", width: "1rem"}}
                                 onMouseEnter={() => handleTransitHover(transit)}
                                 onMouseLeave={handleTransitLeave}
                             />
@@ -80,8 +81,8 @@ const FlightPlan: React.FC<{ flight: Flight, isOutband: boolean }> = ({ flight, 
 
                 <div className='flex items-center gap-4 text-gray-600'>
                     <div className=" text-right">
-                        <div className=' text-xl'>{flight.departureTime}</div>
-                        <div> {flight.departureAirport} </div>
+                        <div className=' text-lg'>{flight.departureTime}</div>
+                        <div className=' text-sm'> {flight.departureAirport} </div>
                     </div>
                     <div className="flex items-center">
                         <div className='flex flex-col w-full gap-2'>
@@ -96,8 +97,8 @@ const FlightPlan: React.FC<{ flight: Flight, isOutband: boolean }> = ({ flight, 
                         <LocalAirportIcon style={{ transform: "rotate(90deg)", width: "1rem", marginLeft: "2px" }} />
                     </div>
                     <div className="text-left">
-                        <div className=' text-xl'>{flight.arrivalTime}</div>
-                        <div> {flight.arrivalAirport}</div>
+                        <div className=' text-lg'>{flight.arrivalTime}</div>
+                        <div className=' text-sm'> {flight.arrivalAirport}</div>
                     </div>
                 </div>
 
