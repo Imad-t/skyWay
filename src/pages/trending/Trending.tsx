@@ -8,10 +8,10 @@ interface City {
 }
 
 const cities: City[] = [
-    { name: "Dubai", image: () => import("../../assets/images/dubai.jpg") },
-    { name: "NewYork", image: () => import("../../assets/images/newyork.jpg") },
-    { name: "London", image: () => import("../../assets/images/london.jpg") },
-    { name: "Paris", image: () => import("../../assets/images/paris.jpg") },
+    { name: "Dubai", image: () => import("../../assets/images/dubai.webp") },
+    { name: "NewYork", image: () => import("../../assets/images/newyork.webp") },
+    { name: "London", image: () => import("../../assets/images/london.webp") },
+    { name: "Paris", image: () => import("../../assets/images/paris.webp") },
 ];
 
 const Trending = () => {
@@ -29,7 +29,7 @@ const Trending = () => {
         }
     };
 
-    // Preload the current and next images
+    //preload the current and next image
     loadImage(current);
     loadImage((current + 1) % cities.length);
 

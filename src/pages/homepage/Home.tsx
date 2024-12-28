@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import cover1 from "../../assets/images/cover1.jpg";
-import cover2 from "../../assets/images/cover2.jpg";
-import cover3 from "../../assets/images/cover3.jpg";
+import cover1 from "../../assets/images/cover1.webp";
+import cover2 from "../../assets/images/cover2.webp";
+import cover3 from "../../assets/images/cover3.webp";
 import cities from "../../data/cities.ts";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
